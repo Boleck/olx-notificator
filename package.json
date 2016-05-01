@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "lodash": "^4.11.1",
+    "md5": "^2.1.0",
+    "x-ray": "^2.3.0"
   },
   "repository": {
     "type": "git",
