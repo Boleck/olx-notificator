@@ -1,6 +1,7 @@
 var Xray = require('x-ray');
 var _ = require('lodash');
 var md5 = require('md5');
+var app = express();
 var xray = Xray();
 var twilio = require('twilio');
 var smsClient = new twilio.RestClient('AC1ce15027fa09b6239f8c1179bedfd70f', 'd8914567316640b076881c096f1fc552');
@@ -8,6 +9,12 @@ var productCache = [];
 var CLIENT_NUMBER = '+48732483530';
 var MESSAGING_NUMBER = '+48691507867';
 var SEARCH_URL = 'http://olx.pl/dom-ogrod/swidnica/?search[filter_float_price%3Afrom]=free&search[dist]=100';
+
+app.set('port', (process.env.PORT || 5000));
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
 
 function getProductData(callback) {
 
