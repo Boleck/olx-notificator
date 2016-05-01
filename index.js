@@ -76,7 +76,7 @@ function sendNotification() {
 
         if (!error) {
           console.log('sms send', item.id);
-          sendSent((item.id));
+          sendSent(item.id);
         } else {
           console.log(error)
         }
