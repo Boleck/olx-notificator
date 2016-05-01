@@ -65,7 +65,7 @@ function parseMessage(item) {
 
 
 function sendNotification() {
-  [productCache[0]].forEach(function (item) {
+  productCache.forEach(function (item) {
     if (validateProductToSend(item)) {
 
       smsClient.sms.messages.create({
