@@ -11,10 +11,13 @@ var CLIENT_NUMBER = '+48732483530';
 var MESSAGING_NUMBER = '+48691507867';
 var SEARCH_URL = 'http://olx.pl/dom-ogrod/swidnica/?search[filter_float_price%3Afrom]=free&search[dist]=100';
 
-app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
+});
+
+app.listen(process.env.PORT || 5000, function () {
+  console.log('Example app listening on port 3000!');
 });
 
 function getProductData(callback) {
