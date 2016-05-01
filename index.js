@@ -22,7 +22,7 @@ function getProductData(callback) {
 
   )(function (err, data) {
 
-    data = data.map(function (item) {
+    data = (data||[]).map(function (item) {
       return {
         name: item.name,
         location: item.location.trim(),
