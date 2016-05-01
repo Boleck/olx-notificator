@@ -1,6 +1,7 @@
 var Xray = require('x-ray');
 var _ = require('lodash');
 var md5 = require('md5');
+var express = require('express');
 var app = express();
 var xray = Xray();
 var twilio = require('twilio');
