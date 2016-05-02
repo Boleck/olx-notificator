@@ -112,20 +112,19 @@ function sendSent (id) {
 }
 
 
-function processData(sendSms) {
+function processData() {
 
   getProductData(function (data) {
     updateCache(data || []);
-
-    if (sendSms) {
-      sendNotification()
-    }
+    sendNotification()
   });
+
 }
 
-setInterval(function () {
-  processData(true)
-}, 1000 * 60);
+setInterval(processData, 1000 * 60);
 
-processData(false);
+updateCache(data || []);
 
+productCache.forEach(function (item) {
+  item.isSend = true;
+});
