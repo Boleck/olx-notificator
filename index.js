@@ -123,8 +123,11 @@ function processData() {
 
 setInterval(processData, 1000 * 60);
 
-updateCache(data || []);
+getProductData(function (data) {
+  updateCache(data || []);
 
-productCache.forEach(function (item) {
-  item.isSend = true;
+  productCache.forEach(function (item) {
+    item.isSend = true;
+  })
 });
+
