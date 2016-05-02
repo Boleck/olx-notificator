@@ -2,23 +2,27 @@ var Xray = require('x-ray');
 var _ = require('lodash');
 var md5 = require('md5');
 var express = require('express');
+var nexmo = require('easynexmo');
+
 var app = express();
 var xray = Xray();
-var twilio = require('twilio');
-var smsClient = new twilio.RestClient('AC1ce15027fa09b6239f8c1179bedfd70f', 'd8914567316640b076881c096f1fc552');
 var productCache = [];
-var CLIENT_NUMBER = '+48732483530';
-var MESSAGING_NUMBER = '+48691507867';
+var CLIENT_NUMBER = '48732231043';
+var MESSAGING_NUMBER = '48691507867';
 var SEARCH_URL = 'http://olx.pl/dom-ogrod/swidnica/?search[filter_float_price%3Afrom]=free&search[dist]=100';
 
 
+nexmo.initialize(process.env.NEXMO_KEY, process.env.NEXMO_SECRET);
+
+console.log('nexmo initialize', process.env.NEXMO_KEY, process.env.NEXMO_SECRET)
+
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('');
 });
 
 app.listen(process.env.PORT || 5000, function () {
   console.log('Example app listening on port 3000!');
-})
+});
 
 function getProductData(callback) {
 
@@ -79,11 +83,11 @@ function sendNotification() {
   productCache.forEach(function (item) {
     if (validateProductToSend(item)) {
 
-      smsClient.sms.messages.create({
-        to: MESSAGING_NUMBER,
-        from: CLIENT_NUMBER,
-        body: parseMessage(item)
-      }, function(error, message) {
+      nexmo.sendTextMessage(
+        CLIENT_NUMBER,
+        MESSAGING_NUMBER,
+        parseMessage(item),
+        function(error, message) {
 
         if (!error) {
           console.log('sms send', item.id);
@@ -108,14 +112,20 @@ function sendSent (id) {
 }
 
 
-function processData() {
+function processData(sendSms) {
 
   getProductData(function (data) {
     updateCache(data || []);
-    sendNotification()
+
+    if (sendSms) {
+      sendNotification()
+    }
   });
 }
 
-setInterval(processData, 1000 * 60);
-processData();
+setInterval(function () {
+  processData(true)
+}, 1000 * 60);
+
+processData(false);
 
