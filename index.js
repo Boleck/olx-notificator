@@ -37,6 +37,10 @@ function getProductData(callback) {
 
   )(function (err, data) {
 
+    if (err) {
+      console.log(err)
+    }
+
     data = (data||[]).map(function (item) {
       return {
         name: item.name,
@@ -47,8 +51,7 @@ function getProductData(callback) {
     });
 
     console.log('data recieved');
-    console.log(data)
-
+    console.log(data);
 
     if (_.isFunction(callback)) {
       callback(data);
