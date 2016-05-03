@@ -38,6 +38,7 @@ function getProductData(callback) {
   )(function (err, data) {
 
     if (err) {
+      console.log('error: ')
       console.log(err)
     }
 
