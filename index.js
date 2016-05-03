@@ -8,7 +8,7 @@ var app = express();
 var xray = Xray();
 var productCache = [];
 var CLIENT_NUMBER = '48732231043';
-var MESSAGING_NUMBER = '48691507867';
+var MESSAGING_NUMBER = '48799929158';
 var SEARCH_URL = 'http://olx.pl/dom-ogrod/swidnica/?search[filter_float_price%3Afrom]=free&search[dist]=100';
 
 
@@ -61,6 +61,11 @@ function updateCache(data) {
       item.isSend = false;
       productCache.push(item)
     }
+  });
+
+
+  productCache = productCache.filter(function (item) {
+    return item.link;
   });
 
 
