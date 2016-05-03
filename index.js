@@ -9,7 +9,7 @@ var xray = Xray();
 var productCache = [];
 var CLIENT_NUMBER = '48732231043';
 var MESSAGING_NUMBER = '48799929158';
-var SEARCH_URL = 'https://olx.pl';
+var SEARCH_URL = 'http://olx.pl';
 
 
 nexmo.initialize(process.env.NEXMO_KEY, process.env.NEXMO_SECRET);
