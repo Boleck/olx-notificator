@@ -63,8 +63,9 @@ function updateCache(data) {
     }
   });
 
+
   console.log('catche updated');
-  //console.log(productCache)
+  console.log(productCache)
 
 }
 
