@@ -46,6 +46,10 @@ function getProductData(callback) {
       }
     });
 
+    console.log('data recieved');
+    console.log(data)
+
+
     if (_.isFunction(callback)) {
       callback(data);
     }
