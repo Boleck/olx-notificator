@@ -12,7 +12,7 @@ var MESSAGING_NUMBER = '48799929158';
 var SEARCH_URL = 'http://olx.pl/dom-ogrod/swidnica/?search[filter_float_price%3Afrom]=free&search[dist]=100';
 
 
-nexmo.initialize(process.env.NEXMO_KEY, process.env.NEXMO_SECRET);
+nexmo.initialize(process.env.NEXMO_KEY, process.env.NEXMO_SECRET)
 
 console.log('nexmo initialize', process.env.NEXMO_KEY, process.env.NEXMO_SECRET);
 
@@ -26,7 +26,7 @@ app.listen(process.env.PORT || 5000, function () {
 
 function getProductData(callback) {
 
-  console.log('start fetching');
+  console.log('start fetching', SEARCH_URL);
 
   xray(SEARCH_URL,
     xray('#offers_table .offer', [{
